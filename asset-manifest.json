@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "//inna-mykytiuk.github.io/goit-react-hw-02-phonebook/static/css/main.0d5b2924.css",
-    "main.js": "//inna-mykytiuk.github.io/goit-react-hw-02-phonebook/static/js/main.d369ee29.js",
+    "main.js": "//inna-mykytiuk.github.io/goit-react-hw-02-phonebook/static/js/main.f7bad79d.js",
     "index.html": "//inna-mykytiuk.github.io/goit-react-hw-02-phonebook/index.html",
     "main.0d5b2924.css.map": "//inna-mykytiuk.github.io/goit-react-hw-02-phonebook/static/css/main.0d5b2924.css.map",
-    "main.d369ee29.js.map": "//inna-mykytiuk.github.io/goit-react-hw-02-phonebook/static/js/main.d369ee29.js.map"
+    "main.f7bad79d.js.map": "//inna-mykytiuk.github.io/goit-react-hw-02-phonebook/static/js/main.f7bad79d.js.map"
   },
   "entrypoints": [
     "static/css/main.0d5b2924.css",
-    "static/js/main.d369ee29.js"
+    "static/js/main.f7bad79d.js"
   ]
 }
