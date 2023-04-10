@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { GlobalStyle } from './GlobalStyle';
 import { Section } from './Section/Section';
 import { Container } from './App.styled';
-import { ContactForm } from './ContactForm/ContactForm';
+// import { ContactForm } from './ContactForm/ContactForm';
 
 export class App extends Component {
   state = {
@@ -36,14 +36,14 @@ export class App extends Component {
     }));
   };
 
-  //створюємо метод, який буде видаляти контакти зі списку контактів по id контакту і перезаписуємо стейт, якщо id контакту не співпадає з id контакту, який ми хочемо видалити
+  //створюємо метод, який буде видаляти контакти зі списку контактів по id контакту і перезаписуємо стейт, якщо id не співпадає з id контакту, який ми хочемо видалити
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
 
-  //створюємо метод, який буде змінювати значення фільтра
+  //створюємо метод, який буде змінювати значення фільтра для того щоб фільтрувати контакти по імені
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
@@ -72,7 +72,7 @@ export class App extends Component {
     return (
       <Container>
         <Section title="Phonebook">
-          <ContactForm onSubmit={this.addContact} />
+          {/* <ContactForm onSubmit={this.addContact} /> */}
         </Section>
         <GlobalStyle />
         <Section title="Contacts"></Section>

@@ -1,79 +1,61 @@
 import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 
-import { Component } from 'react';
-import { BsFillPersonFill } from 'react-icons/bs';
-import { GiSmartphone } from 'react-icons/gi';
+// import { BsFillPersonFill } from 'react-icons/bs';
+// import { GiSmartphone } from 'react-icons/gi';
 
 // свторимо компоненту ContactForm
 
-export class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+export const ContactForm = ({ onSubmit }) => {
+  const handleSubmit = (values, actions) => {
+    const contact = {
+      id: nanoid(6),
+      ...values,
+    };
+    onSubmit(contact);
+    actions.resetForm();
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const { name, number } = this.state;
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
+  return (
+    <Formik initialValues={{ name: '', number: '' }} onSubmit={handleSubmit}>
+      {props => {
+        return (
+          <form>
+            <div>
+              <div>
+                <label htmlFor="name">Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                  title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                  required
+                  placeholder="Primarh93"
+                  value={props.values.name}
+                  onChange={props.handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="number">Number</label>
+                <input
+                  id="number"
+                  type="tel"
+                  name="number"
+                  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                  required
+                  placeholder="+38 000 000 00 00"
+                  value={props.values.number}
+                  onChange={props.handleChange}
+                />
+              </div>
+            </div>
 
-
-  render() {
-    const { name, number } = this.state;
-
-    return (
-      <Formik>
-        <form>
-          <label>
-            Name
-            <input
-              type="text"
-              name="name"
-              id={this.nameInput}
-              value={name}
-              onChange={this.handleChange}
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />{' '}
-            <BsFillPersonFill
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '10px',
-                transform: 'translateY(-50%)',
-              }}
-            />
-          </label>
-          <label>
-            Number
-            <input
-              type="tel"
-              name="number"
-              id={this.telInput}
-              value={number}
-              onChange={this.handleChange}
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-            />
-            <GiSmartphone
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '10px',
-                transform: 'translateY(-50%)',
-              }}
-            />
-          </label>
-          <button type="submit">Add contact</button>
-        </form>
-      </Formik>
-    );
-  }
-}
+            <button type="submit">Add contact</button>
+          </form>
+        );
+      }}
+    </Formik>
+  );
+};
