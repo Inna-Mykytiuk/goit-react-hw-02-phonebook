@@ -1,9 +1,8 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { GlobalStyle } from './GlobalStyle';
 import { Section } from './Section/Section';
 import { Container } from './App.styled';
-// import { ContactForm } from './ContactForm/ContactForm';
 
 export class App extends Component {
   state = {
@@ -15,58 +14,48 @@ export class App extends Component {
     filter: '',
   };
 
-  //створюємо метод, який буде додавати контакти в і перевіряти чи є вже такий контакт, якщо є, то виводить повідомлення про це
-  addContact = (name, number) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-    if (
-      this.state.contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
-      alert(`you already have ${name} in your contacts`);
-      return;
-    }
-
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
-    }));
-  };
-
-  //створюємо метод, який буде видаляти контакти зі списку контактів по id контакту і перезаписуємо стейт, якщо id не співпадає з id контакту, який ми хочемо видалити
-  deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
-  };
-
-  //створюємо метод, який буде змінювати значення фільтра для того щоб фільтрувати контакти по імені
-  changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
-  };
-
-  //створюємо метод, який буде фільтрувати контакти по імені
-  getVisibleContacts = () => {
-    const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-
-  // //створюємо метод, який буде зберігати контакти в localStorage
-  // componentDidMount() {
-  //   const contacts = localStorage.getItem('contacts');
-  //   const parsedContacts = JSON.parse(contacts);
-
-  //   if (parsedContacts) {
-  //     this.setState({ contacts: parsedContacts });
+  // //створюємо метод, який буде додавати контакти в і перевіряти чи є вже такий контакт, якщо є, то виводить повідомлення про це
+  // addContact = (name, number) => {
+  //   const contact = {
+  //     id: nanoid(),
+  //     name,
+  //     number,
+  //   };
+  //   if (
+  //     this.state.contacts.find(
+  //       contact => contact.name.toLowerCase() === name.toLowerCase()
+  //     )
+  //   ) {
+  //     alert(`you already have ${name} in your contacts`);
+  //     return;
   //   }
-  // }
+
+  //   this.setState(({ contacts }) => ({
+  //     contacts: [contact, ...contacts],
+  //   }));
+  // };
+
+  // //створюємо метод, який буде видаляти контакти зі списку контактів по id контакту і перезаписуємо стейт, якщо id не співпадає з id контакту, який ми хочемо видалити
+  // deleteContact = contactId => {
+  //   this.setState(prevState => ({
+  //     contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+  //   }));
+  // };
+
+  // //створюємо метод, який буде змінювати значення фільтра для того щоб фільтрувати контакти по імені
+  // changeFilter = e => {
+  //   this.setState({ filter: e.currentTarget.value });
+  // };
+
+  // //створюємо метод, який буде фільтрувати контакти по імені
+  // getVisibleContacts = () => {
+  //   const { contacts, filter } = this.state;
+  //   const normalizedFilter = filter.toLowerCase();
+
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter)
+  //   );
+  // };
 
   render() {
     return (
