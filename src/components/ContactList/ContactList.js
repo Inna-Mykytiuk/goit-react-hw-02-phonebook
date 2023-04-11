@@ -2,7 +2,7 @@
 
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { List, ListItem, ItemWrapper, ListWrapper } from './ContactList.styled';
+import { List, ListItem, ItemWrapper } from './ContactList.styled';
 
 export const ContactList = ({ contacts, onDeleteContact }) => (
   <List>
