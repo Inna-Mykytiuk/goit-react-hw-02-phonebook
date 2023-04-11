@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { GlobalStyle } from './GlobalStyle';
 import { Section } from './Section/Section';
 import { Container } from './App.styled';
-import { ContactForm } from './ContactForm/ContactForm';
+import { Phonebook } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './ContactFilter/ContactFilter';
 
@@ -18,42 +18,32 @@ export class App extends Component {
     filter: '',
   };
 
-  //створюємо метод, який буде додавати контакти в і перевіряти чи є вже такий контакт, якщо є, то виводить повідомлення про це
   addContact = (name, number) => {
+    const { contacts } = this.state;
     const contact = {
       id: nanoid(),
       name,
       number,
     };
-    if (
-      this.state.contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
-      alert(`you already have ${name} in your contacts`);
+
+    const checkName = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (checkName) {
+      alert(`${name} is already in contacts`);
       return;
     }
 
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
-    }));
+    this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
   };
 
-  //створюємо метод, який буде видаляти контакти зі списку контактів по id контакту і перезаписуємо стейт, якщо id не співпадає з id контакту, який ми хочемо видалити
-  deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
-  };
-
-  //створюємо метод, який буде змінювати значення фільтра для того щоб фільтрувати контакти по імені
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
 
-  //створюємо метод, який буде фільтрувати контакти по імені
-  getVisibleContacts = () => {
-    const { contacts, filter } = this.state;
+  getFilteredContacts = () => {
+    const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
@@ -61,18 +51,25 @@ export class App extends Component {
     );
   };
 
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   render() {
+    const filteredContacts = this.getFilteredContacts();
     return (
       <Container>
-        <Section title="Phonebook">
-          <ContactForm onSubmit={this.addContact} />
-        </Section>
         <GlobalStyle />
+        <Section title="Phonebook">
+          <Phonebook onSubmit={this.addContact} />
+        </Section>
         <Section title="Contacts">
-          <Filter value={this.state.filter} onChange={this.changeFilter} />
+          <Filter value={this.filter} onChange={this.changeFilter} />
           <ContactList
-            contacts={this.getVisibleContacts()}
-            deleteContact={this.deleteContact}
+            contacts={filteredContacts}
+            onDeleteContact={this.deleteContact}
           />
         </Section>
       </Container>

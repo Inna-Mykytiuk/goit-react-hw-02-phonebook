@@ -1,26 +1,33 @@
-import { FaTrashAlt } from 'react-icons/fa';
-import { ListItem, ItemWrapper, List, ListWrapper } from './ContactList.styled';
+// import { FaTrashAlt } from 'react-icons/fa';
 
-export const ContactList = ({ contacts = [], deleteContact }) => (
-  <ListWrapper>
-    <List>
-      {contacts.map((contact, id) => (
-        <ListItem key={id}>
-          <ItemWrapper>
-            <p>{contact.name}: </p>
-            <p>{contact.number}</p>
-          </ItemWrapper>
+import React from 'react';
+// import PropTypes from 'prop-types';
+import { List, ListItem, ItemWrapper, ListWrapper } from './ContactList.styled';
 
-          <button type="button" onClick={() => deleteContact(contact.id)}>
-            <FaTrashAlt
-              style={{
-                cursor: 'pointer',
-                color: 'crimson',
-              }}
-            />
-          </button>
-        </ListItem>
-      ))}
-    </List>
-  </ListWrapper>
+export const ContactList = ({ contacts, onDeleteContact }) => (
+  <List>
+    {contacts.map(({ id, name, number }) => (
+      <ListItem key={id}>
+        <ItemWrapper>
+          <p>{name}:</p>
+          <p>{number}</p>
+        </ItemWrapper>
+
+        <button type="button" onClick={() => onDeleteContact(id)}>
+          Delete
+        </button>
+      </ListItem>
+    ))}
+  </List>
 );
+
+// ContactsList.propTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.exact({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired,
+//     }).isRequired
+//   ).isRequired,
+//   onDeleteContact: PropTypes.func.isRequired,
+// };

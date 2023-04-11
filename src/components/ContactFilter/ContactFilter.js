@@ -1,12 +1,15 @@
-export const Filter = ({ filter, handleChange }) => (
-  <div>
-    <label>Find contacts by Name </label>
-    <input
-      type="text"
-      name="filter"
-      placeholder="Enter filter"
-      value={filter}
-      onChange={handleChange}
-    />
-  </div>
+import React from 'react';
+// import PropTypes from 'prop-types';
+// import { Label, Input } from '../Phonebook/Phonebook.styled';
+
+export const Filter = ({ value, onChange }) => (
+  <label>
+    Find contact by name
+    <input type="text" value={value} onChange={onChange} />
+  </label>
 );
+
+// Filter.propTypes = {
+//   value: PropTypes.string,
+//   onChange: PropTypes.func.isRequired,
+// };
