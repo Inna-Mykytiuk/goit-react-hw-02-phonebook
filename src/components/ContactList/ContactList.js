@@ -1,9 +1,9 @@
 import { FaTrashAlt } from 'react-icons/fa';
-import { ListItem, ItemWrapper } from './ContactList.styled';
+import { ListItem, ItemWrapper, List, ListWrapper } from './ContactList.styled';
 
 export const ContactList = ({ contacts = [], deleteContact }) => (
-  <div>
-    <ul>
+  <ListWrapper>
+    <List>
       {contacts.map((contact, id) => (
         <ListItem key={id}>
           <ItemWrapper>
@@ -21,6 +21,6 @@ export const ContactList = ({ contacts = [], deleteContact }) => (
           </button>
         </ListItem>
       ))}
-    </ul>
-  </div>
+    </List>
+  </ListWrapper>
 );
