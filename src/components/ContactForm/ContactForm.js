@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import React, { Component } from 'react';
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 
 // export const ContactForm = ({ onSubmit }) => {
 //   const handleSubmit = (values, actions) => {
@@ -62,19 +62,24 @@ export class ContactForm extends Component {
     number: '',
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.name, this.state.number);
+
+    this.setState({ name: '', number: '' });
+  };
+
   handleChange = e => {
-    const { name, value } = e.target;
+    const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    this.props.handleSubmit(this.state);
-    form.reset();
-  };
+  nameInput = nanoid();
+  telInput = nanoid();
 
   render() {
+    // const { name, number } = this.state;
+
     return (
       <Formik
         initialValues={{ name: '', number: '' }}
@@ -85,9 +90,9 @@ export class ContactForm extends Component {
             <form>
               <div>
                 <div>
-                  <label htmlFor="name">Name</label>
+                  <label htmlFor={this.nameInput}>Name</label>
                   <input
-                    id="name"
+                    id={this.nameInput}
                     type="text"
                     name="name"
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -99,9 +104,9 @@ export class ContactForm extends Component {
                   />
                 </div>
                 <label>
-                  <label htmlFor="number">Number</label>
+                  <label htmlFor={this.telInput}>Number</label>
                   <input
-                    id="number"
+                    id={this.telInput}
                     type="tel"
                     name="number"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

@@ -5,6 +5,7 @@ import { Section } from './Section/Section';
 import { Container } from './App.styled';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
+import { Filter } from './ContactFilter/ContactFilter';
 
 export class App extends Component {
   state = {
@@ -68,6 +69,7 @@ export class App extends Component {
         </Section>
         <GlobalStyle />
         <Section title="Contacts">
+          <Filter value={this.state.filter} onChange={this.changeFilter} />
           <ContactList
             contacts={this.getVisibleContacts()}
             deleteContact={this.deleteContact}
