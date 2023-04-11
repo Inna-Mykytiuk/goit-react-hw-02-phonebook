@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { GlobalStyle } from './GlobalStyle';
 import { Section } from './Section/Section';
 import { Container } from './App.styled';
-// import { ContactForm } from './ContactForm/ContactForm';
+import { ContactForm } from './ContactForm/ContactForm';
 // import { ContactList } from './ContactList/ContactList';
 
 export class App extends Component {
@@ -63,7 +63,7 @@ export class App extends Component {
     return (
       <Container>
         <Section title="Phonebook">
-          {/* <ContactForm onSubmit={this.addContact} /> */}
+          <ContactForm onSubmit={this.addContact} />
         </Section>
         <GlobalStyle />
         <Section title="Contacts">{/* <ContactList /> */}</Section>
