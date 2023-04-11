@@ -5,7 +5,9 @@ export const ContactList = ({ contacts = [], deleteContact }) => (
     <ul>
       {contacts.map((contact, id) => (
         <li key={id}>
-          {contact.name}: {contact.number}
+          <p>{contact.name}: </p>
+          <p>{contact.number}</p>
+
           <button type="button" onClick={() => deleteContact(contact.id)}>
             <FaTrashAlt
               style={{
