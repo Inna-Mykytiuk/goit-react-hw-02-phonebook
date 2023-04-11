@@ -5,7 +5,7 @@ export const SectionWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 40%;
   /* background-color: #fff; */
   padding: 20px;
   margin: 0 auto;

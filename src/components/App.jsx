@@ -18,6 +18,7 @@ export class App extends Component {
     filter: '',
   };
 
+  //створюємо метод для додавання контактів в стейт
   addContact = (name, number) => {
     const { contacts } = this.state;
     const contact = {
@@ -26,6 +27,7 @@ export class App extends Component {
       number,
     };
 
+    //перевіряємо чи є такий контакт в потоці, якщо немає то додаємо в потік інакше виводимо алерт що такий контакт вже є в списку контактів і нічого не робимо
     const checkName = contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
@@ -38,10 +40,12 @@ export class App extends Component {
     this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
   };
 
+  //створюємо метод для фільтрації контактів, коли вводимо в інпут значення то відбувається фільтрація і виводяться тільки ті контакти в яких є введені значення
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
 
+  //створємо метод для фільтрації контактів відповідно до введених значень в інпут
   getFilteredContacts = () => {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
@@ -51,6 +55,7 @@ export class App extends Component {
     );
   };
 
+  //створюємо метод для видалення контактів, яку передаємо в пропси в компоненту ContactList для того щоб видалити контакт
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),

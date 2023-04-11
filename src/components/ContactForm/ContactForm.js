@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Label, Input, Button } from './ContactForm.styled';
 
 export class Phonebook extends Component {
@@ -53,3 +54,7 @@ export class Phonebook extends Component {
     );
   }
 }
+
+Phonebook.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
