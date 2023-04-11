@@ -4,6 +4,7 @@ import { GlobalStyle } from './GlobalStyle';
 import { Section } from './Section/Section';
 import { Container } from './App.styled';
 // import { ContactForm } from './ContactForm/ContactForm';
+// import { ContactList } from './ContactList/ContactList';
 
 export class App extends Component {
   state = {
@@ -65,7 +66,7 @@ export class App extends Component {
           {/* <ContactForm onSubmit={this.addContact} /> */}
         </Section>
         <GlobalStyle />
-        <Section title="Contacts"></Section>
+        <Section title="Contacts">{/* <ContactList /> */}</Section>
       </Container>
     );
   }
